@@ -15,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <title>FR Blogs</title>
+      </head>
+      <body className="bg-yellow-300 dark:bg-black">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
