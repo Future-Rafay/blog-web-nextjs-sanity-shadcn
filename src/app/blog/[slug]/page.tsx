@@ -1,41 +1,9 @@
-import { client } from "@/sanity/lib/client";
 import React from "react";
 import Image from "next/image";
-
-async function getData(slug: string) {
-  const query = `
-    *[_type == 'post' && slug.current == '${slug}'] {
-      title,
-      "currentSlug": slug.current,
-      publishedAt,
-       summery,
-      mainImage {
-        asset->{
-          _id,
-          url
-        },
-        alt
-      },
-      body[] {
-        ...,
-        markDefs[] {
-          ...,
-        },
-        children[] {
-          ...,
-          _key
-        }
-      },
-      "author": author->name,
-      "categories": categories[]->title
-    }[0]`;
-
-  const data = await client.fetch(query);
-  return data;
-}
+import { getFullData } from "@/lib/fetchdata";
 
 export default async function Blog({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug);
+  const data = await getFullData(params.slug);
 
   if (!data) {
     return (
@@ -53,7 +21,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
   return (
     <div className="max-w-4xl mx-auto py-10 px-4">
       {/* Blog Title */}
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6">
         {data.title}
       </h1>
 
@@ -69,7 +37,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
           {data.categories?.map((category: string, idx: number) => (
             <span
               key={idx}
-              className="bg-secondary text-secendory py-1 px-2 rounded-lg"
+              className="bg-secondary text-white py-1 px-3 rounded-lg text-sm"
             >
               {category}
             </span>
@@ -90,16 +58,40 @@ export default async function Blog({ params }: { params: { slug: string } }) {
       )}
 
       {/* Blog Content */}
-      <div className="prose dark:prose-dark max-w-none prose-headings:font-bold prose-h1:text-primary prose-h2:text-secondary prose-blockquote:border-primary prose-a:text-primary hover:prose-a:underline">
-      {data.body?.map((block: any, idx: number) => {
-          if (block._type === "block") {
-            return (
-              <p key={idx} className="">
-                {block.children.map((child: any) => child.text).join(" ")}
-              </p>
-            );
+      <div className="prose dark:prose-invert">
+        {data.body?.map((block: any, idx: number) => {
+          switch (block._type) {
+            case "block":
+              // Render text blocks
+              return (
+                <div key={idx}>
+                  {block.style === "blockquote" ? (
+                    <blockquote className="border-l-4 pl-4 italic text-gray-700 dark:text-gray-300">
+                      {block.children.map((child: any) => child.text).join(" ")}
+                    </blockquote>
+                  ) : (
+                    <p className="mb-4">
+                      {block.children.map((child: any) => child.text).join(" ")}
+                    </p>
+                  )}
+                </div>
+              );
+            case "image":
+              // Render images in the body
+              return (
+                <div key={idx} className="my-6">
+                  <Image
+                    src={block.asset.url}
+                    alt={block.alt || "Content Image"}
+                    width={800}
+                    height={450}
+                    className="rounded-lg"
+                  />
+                </div>
+              );
+            default:
+              return null; // Handle other custom block types if needed
           }
-          return null; // Handle other block types as needed
         })}
       </div>
     </div>

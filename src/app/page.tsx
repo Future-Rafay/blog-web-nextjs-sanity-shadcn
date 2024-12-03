@@ -1,42 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import Image from "next/image";
-import { simpleBlogCard } from "@/sanity/lib/interface"; // Import your interface
+import { urlFor } from "@/sanity/lib/image";
+import { getdata } from "@/lib/fetchdata";
 
-export async function getdata(): Promise<simpleBlogCard[]> {
-  const query = `
-    *[_type == 'post'] | order(_createdAt desc) {
-      title,
-      "currentSlug": slug.current,
-      publishedAt,
-      summery,
-      mainImage {
-        asset->{
-          _id,
-          url
-        },
-        alt
-      },
-      body[] {
-        ...,
-        markDefs[],
-        children[] {
-          ...,
-          _key
-        }
-      },
-      "author": author->name,
-      "categories": categories[]->title
-    }
-  `;
-  const data: simpleBlogCard[] = await client.fetch(query);
-  return data;
-}
 
 export default async function Home() {
-  const data: simpleBlogCard[] = await getdata();
+  const data = await getdata();
 
   return (
     <div className="container">
@@ -49,7 +20,8 @@ export default async function Home() {
             {/* Main Image */}
             {post.mainImage?.asset?.url && (
               <Image
-                src={post.mainImage.asset.url}
+                // src={post.mainImage.asset.url}
+                src={urlFor(post.mainImage).url()}
                 alt={post.mainImage.alt || "Blog image"}
                 width={500}
                 height={300}
