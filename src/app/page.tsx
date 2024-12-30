@@ -5,7 +5,6 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { getdata } from "@/lib/fetchdata";
 
-
 export default async function Home() {
   const data = await getdata();
 
@@ -31,7 +30,7 @@ export default async function Home() {
 
             <CardContent className="p-6">
               {/* Title */}
-              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white line-clamp-2 mb-2">
+              <h3 className="text-2xl font-semibold line-clamp-2 mb-2">
                 {post.title}
               </h3>
 
@@ -44,6 +43,7 @@ export default async function Home() {
               <div className="flex flex-wrap space-x-2 mt-2">
                 {post.categories.map((category, idx) => (
                   <span
+
                     key={idx}
                     className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full dark:bg-blue-600 dark:text-blue-100"
                   >

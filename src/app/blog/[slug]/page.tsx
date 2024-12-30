@@ -1,6 +1,10 @@
+'use client'
+
 import React from "react";
 import Image from "next/image";
 import { getFullData } from "@/lib/fetchdata";
+import { urlFor } from "@/sanity/lib/image";
+import CommentSection from "@/components/CommentSection";
 
 export default async function Blog({ params }: { params: { slug: string } }) {
   const data = await getFullData(params.slug);
@@ -16,7 +20,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
         </p>
       </div>
     );
-  }
+  }   
 
   return (
     <div className="max-w-4xl mx-auto py-10 px-4">
@@ -79,20 +83,21 @@ export default async function Blog({ params }: { params: { slug: string } }) {
             case "image":
               // Render images in the body
               return (
-                <div key={idx} className="my-6">
-                  <Image
-                    src={block.asset.url}
-                    alt={block.alt || "Content Image"}
-                    width={800}
-                    height={450}
-                    className="rounded-lg"
-                  />
-                </div>
+                <Image
+                src={urlFor(block.asset.url).url()}
+                alt={block.alt || "Content Image"}
+                width={800}
+                height={450}
+                className="rounded-lg"
+                layout="responsive"
+              />
+              
               );
             default:
               return null; // Handle other custom block types if needed
           }
         })}
+        <CommentSection />
       </div>
     </div>
   );
