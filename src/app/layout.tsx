@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>FR Blogs</title>
-      <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
       <body className="">
         <ThemeProvider
