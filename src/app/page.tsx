@@ -28,6 +28,7 @@ export default async function Home() {
                 width={500}
                 height={300}
                 className="object-cover w-full h-48 lg:h-60"
+                priority
               />
             )}
 

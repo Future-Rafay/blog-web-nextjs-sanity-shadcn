@@ -7,11 +7,12 @@ const About = () => {
             <h1 className="text-4xl font-bold text-center mb-8  text-blue-600 dark:text-primary">About Me</h1>
             <div className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-12">
                 <Image
-                    src="/myphotozoomed.jpg" // Replace with your photo's path
+                    src="/images/myphotozoomed.jpg" // Replace with your photo's path
                     alt="Abdul Rafay"
                     className=" rounded-full shadow-md mb-6 lg:mb-0"
                     width={192}
                     height={302}
+                    priority
                 />
                 <div className="max-w-2xl">
                     <p className="text-muted-foreground mb-4">

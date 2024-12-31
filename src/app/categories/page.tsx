@@ -22,7 +22,7 @@ const categories = [
     link: "/categories/nature",
   },
 ];
-  
+
 const CategoriesPage = () => {
   return (
     <div className=" py-10 px-4 sm:px-8">
@@ -60,6 +60,7 @@ const CategoriesPage = () => {
                   className="w-full h-48 object-cover"
                   width={192}
                   height={192}
+                  priority
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-25 hover:bg-opacity-40 transition duration-300"></div>
               </div>
