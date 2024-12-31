@@ -9,7 +9,7 @@ const Footer = () => {
                     &copy; {new Date().getFullYear()} <Link
                         href="https://my-portfolio-animated-abdul-rafays-projects-87eac4f7.vercel.app/"
                         target="_blank"
-                        className="text-primary dark:text-primary-dark hover:text-primary-foreground dark:hover:text-primary-foreground-dark transition-colors duration-200"
+                        className=" text-blue-600 hover:text-blue-800 dark:text-primary dark:hover:text-primary-foreground dark:hover:text-primary-foreground-dark transition-colors duration-200"
                         aria-label="Portfolio"
                     >
                         Abdul Rafay.
@@ -20,7 +20,7 @@ const Footer = () => {
                     <Link
                         href="https://www.linkedin.com/in/rafay-nadeem-14a2632bb/"
                         target="_blank"
-                        className="text-primary dark:text-primary-dark hover:text-primary-foreground dark:hover:text-primary-foreground-dark transition-colors duration-200"
+                        className="text-blue-600 hover:text-blue-800 dark:text-primary dark:hover:text-primary-foreground transition-colors duration-200"
                         aria-label="LinkedIn"
                     >
                         <span className="sr-only">LinkedIn</span>
@@ -29,7 +29,7 @@ const Footer = () => {
                     <Link
                         href="https://github.com/Future-Rafay"
                         target="_blank"
-                        className="text-primary dark:text-primary-dark hover:text-primary-foreground dark:hover:text-primary-foreground-dark transition-colors duration-200"
+                        className="text-blue-600 hover:text-blue-800 dark:text-primary dark:hover:text-primary-foreground transition-colors duration-200"
                         aria-label="GitHub"
                     >
                         <span className="sr-only">GitHub</span>

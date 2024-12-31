@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { FaTrashAlt } from "react-icons/fa";
 interface Comment {
   id: string;
   text: string;
@@ -18,7 +18,7 @@ const CommentSection = () => {
     }
   }, []);
 
-  // Save comments to localStorage whenever the comments change
+  // Save comments to localStorage whenever the comments change 
   useEffect(() => {
     if (comments.length > 0) {
       localStorage.setItem("comments", JSON.stringify(comments));
@@ -52,8 +52,8 @@ const CommentSection = () => {
   };
 
   return (
-    <div className="comment-section p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-center text-primary">Comments</h2>
+    <div className="comment-section p-6 max-w-4xl mx-auto border-2 border-solid border-secondary-foreground rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold text-center text-blue-600 dark:text-primary">Comments</h2>
 
       {/* Comment Input */}
       <form onSubmit={handleCommentSubmit} className="my-6 space-y-4">
@@ -62,11 +62,11 @@ const CommentSection = () => {
           value={commentText}
           onChange={handleCommentChange}
           placeholder="Write your comment..."
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 dark:focus:ring-primary focus:ring-blue-600 "
         />
         <button
           type="submit"
-          className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-foreground transition-colors duration-200"
+          className="w-full py-3 bg-blue-600 hover:bg-blue-400 dark:bg-primary text-white dark:text-black dark:hover:text-white rounded-lg dark:hover:bg-primary-foreground transition-colors duration-200"
         >
           Submit
         </button>
@@ -80,17 +80,17 @@ const CommentSection = () => {
           {comments.map((comment) => (
             <li
               key={comment.id}
-              className="p-4 border border-muted-foreground rounded-lg bg-muted text-primary-foreground flex justify-between items-start"
+              className="ml-0 p-4 border border-muted-foreground rounded-lg bg-muted text-primary-foreground flex justify-between"
             >
               <div>
-                <p className="text-lg text-primary-foreground">{comment.text}</p>
-                <span className="text-sm text-muted-foreground">{comment.date}</span>
+                <p className="text-lg text-black dark:text-white">{comment.text}</p>
+                <span className="text-sm text-black/40 dark:text-white">{comment.date}</span>
               </div>
               <button
                 onClick={() => handleDeleteComment(comment.id)}
                 className="ml-4 text-red-500 hover:text-red-700 transition-colors"
               >
-                Delete
+                <FaTrashAlt />
               </button>
             </li>
           ))}

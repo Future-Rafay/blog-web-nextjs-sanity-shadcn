@@ -70,7 +70,7 @@ const Navbar = () => {
             href="/about"
             className="hover:underline underline-offset-2 font-semibold"
           >
-            About <span className="text-blue-600 dark:text-primary">Us</span>
+            About <span className="text-blue-600 dark:text-primary">Me</span>
           </Link>
         </li>
         <li>
@@ -78,7 +78,7 @@ const Navbar = () => {
             href="/contact"
             className="hover:underline underline-offset-2 font-semibold"
           >
-            Contact <span className="text-blue-600 dark:text-primary">Us</span>
+            Contact <span className="text-blue-600 dark:text-primary">Me</span>
           </Link>
         </li>
         <ModeToggle />
@@ -103,7 +103,7 @@ const Navbar = () => {
                 className="hover:underline underline-offset-2 font-semibold text-gray-800 dark:text-gray-200"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                About <span className="text-blue-600 dark:text-primary">Us</span>
+                About <span className="text-blue-600 dark:text-primary">Me</span>
               </Link>
             </li>
             <li>
@@ -112,7 +112,7 @@ const Navbar = () => {
                 className="hover:underline underline-offset-2 font-semibold text-gray-800 dark:text-gray-200"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contact <span className="text-blue-600 dark:text-primary">Us</span>
+                Contact <span className="text-blue-600 dark:text-primary">Me</span>
               </Link>
             </li>
             <li>

@@ -20,28 +20,30 @@ export default async function Blog({ params }: { params: { slug: string } }) {
         </p>
       </div>
     );
-  }   
+  }
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4">
+    <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
       {/* Blog Title */}
-      <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">
         {data.title}
-      </h1>
+      </h1> 
 
       {/* Meta Information */}
-      <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400 mb-6">
-        <p>
-          By <span className="font-semibold text-primary">{data.author}</span>
+      <div className="flex flex-wrap gap-4 text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-sm sm:text-base">
+          By <span className="font-semibold  text-blue-600 dark:text-primary">{data.author}</span>
         </p>
-        <span>•</span>
-        <p>{new Date(data.publishedAt).toLocaleDateString()}</p>
-        <span>•</span>
-        <p>
+        <span className="hidden sm:inline">•</span>
+        <p className="text-sm sm:text-base">
+          {new Date(data.publishedAt).toLocaleDateString()}
+        </p>
+        <span className="hidden sm:inline">•</span>
+        <p className="flex gap-2 flex-wrap">
           {data.categories?.map((category: string, idx: number) => (
             <span
               key={idx}
-              className="bg-secondary text-white py-1 px-3 rounded-lg text-sm"
+              className=" bg-blue-600 text-white dark:text-primary-foreground dark:bg-primary py-1 px-3 rounded-lg text-sm"
             >
               {category}
             </span>
@@ -57,12 +59,12 @@ export default async function Blog({ params }: { params: { slug: string } }) {
           width={1200}
           height={600}
           priority
-          className="rounded-lg mb-8 object-cover w-full"
+          className="rounded-lg mb-8 object-cover w-full sm:h-96 md:h-112 lg:h-128"
         />
       )}
 
       {/* Blog Content */}
-      <div className="prose dark:prose-invert">
+      <div className="prose dark:prose-invert sm:prose-lg lg:prose-xl">
         {data.body?.map((block: any, idx: number) => {
           switch (block._type) {
             case "block":
@@ -74,7 +76,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
                       {block.children.map((child: any) => child.text).join(" ")}
                     </blockquote>
                   ) : (
-                    <p className="mb-4">
+                    <p className="mb-4 text-xs sm:text-sm lg:text-lg">
                       {block.children.map((child: any) => child.text).join(" ")}
                     </p>
                   )}
@@ -84,14 +86,13 @@ export default async function Blog({ params }: { params: { slug: string } }) {
               // Render images in the body
               return (
                 <Image
-                src={urlFor(block.asset.url).url()}
-                alt={block.alt || "Content Image"}
-                width={800}
-                height={450}
-                className="rounded-lg"
-                layout="responsive"
-              />
-              
+                  src={urlFor(block.asset.url).url()}
+                  alt={block.alt || "Content Image"}
+                  width={800}
+                  height={450}
+                  className="rounded-lg"
+                  layout="responsive"
+                />
               );
             default:
               return null; // Handle other custom block types if needed

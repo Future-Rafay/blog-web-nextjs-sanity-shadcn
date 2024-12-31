@@ -22,13 +22,13 @@ const categories = [
     link: "/categories/nature",
   },
 ];
-
+  
 const CategoriesPage = () => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 py-10 px-4 sm:px-8">
+    <div className=" py-10 px-4 sm:px-8">
       {/* Hero Section */}
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+        <h1 className="text-4xl font-bold text-blue-600 dark:text-primary mb-4">
           Explore Categories
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
@@ -41,7 +41,7 @@ const CategoriesPage = () => {
         <input
           type="text"
           placeholder="Search categories..."
-          className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-3 px-4 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary focus:outline-none"
+          className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-3 px-4 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-600 dark:focus:ring-primary focus:outline-none"
         />
       </div>
 
@@ -83,18 +83,18 @@ const CategoriesPage = () => {
           {categories.slice(0, 2).map((category) => (
             <div
               key={category.name}
-              className="flex items-center bg-primary text-primary-foreground dark:bg-gray-700 dark:text-gray-200 rounded-lg p-6 w-full sm:w-1/2 hover:shadow-lg transition-shadow"
+              className="flex items-center bg-blue-600 dark:bg-primary  dark:bg-gray-700 dark:text-gray-200 rounded-lg p-6 w-full sm:w-1/2 hover:shadow-lg transition-shadow"
             >
               <Image
                 src={category.image}
-                alt={category.name}
+                alt={category.name} 
                 className="w-16 h-16 object-cover rounded-md mr-4"
                 width={64}
                 height={64}
               />
               <div>
-                <h3 className="text-lg font-semibold">{category.name}</h3>
-                <p className="text-sm">{category.description}</p>
+                <h3 className="text-lg font-semibold text-white dark:text-black/90">{category.name}</h3>
+                <p className="text-sm text-white  dark:text-black/60">{category.description}</p>
               </div>
             </div>
           ))}
