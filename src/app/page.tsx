@@ -4,12 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { getdata } from "@/lib/fetchdata";
+import HeroSection from "@/components/HeroSection";
 
 export default async function Home() {
   const data = await getdata();
 
   return (
     <div className="container">
+      <HeroSection />
+        <h3 className="text-center my-[50px] text-4xl font-bold ">My <span className="text-primary">Blogs</span></h3>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 ">
         {data.map((post, idx) => (
           <Card
